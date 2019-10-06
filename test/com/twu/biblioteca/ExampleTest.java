@@ -29,7 +29,29 @@ public class ExampleTest {
 
     @Test
     public void testBookPrintBook() {
-        //insert test here
+        // on making a book with known values, it should print those same specified values always
+    }
+
+    @Test
+    public void testLibraryAddBook() {
+
+    }
+
+    @Test
+    public void testBookConstructor() {
+
+    }
+
+    @Test
+    public void testLibraryConstructor(){
+
+    }
+
+    @Test
+    public void testMakeNewLibrary() {
+        // given a list of books, does makeNewLibrary return a library containing those books
+        // potentially change makeNewLibrary() to take List<Book> as input
+        // and make a separate method to generate a sample list of books
     }
 
 }

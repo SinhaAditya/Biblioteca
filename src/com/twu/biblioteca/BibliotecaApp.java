@@ -11,6 +11,7 @@ public class BibliotecaApp {
         // displaying welcome message
         System.out.println("Welcome to Biblioteca. " +
                 "Your one stop shop for great book titles in Bangalore!");
+        System.out.println("============================");
 
         Library library = makeNewLibrary();
 
@@ -32,6 +33,8 @@ public class BibliotecaApp {
 
         while(choice != 2) {
             // printing main menu
+            System.out.println("MAIN MENU");
+            System.out.println("============================");
             for(String item: mainMenu) {
                 System.out.println(item);
             }

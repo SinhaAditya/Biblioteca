@@ -21,7 +21,7 @@ public class Book {
         return this.year;
     }
 
-    public void printBook() {
-        System.out.println(getTitle() + "   " + getAuthor() + "   " + getYear());
+    public String printBook() {
+        return (getTitle() + "   " + getAuthor() + "   " + getYear());
     }
 }

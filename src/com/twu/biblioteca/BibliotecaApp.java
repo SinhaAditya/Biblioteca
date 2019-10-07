@@ -13,7 +13,8 @@ public class BibliotecaApp {
                 "Your one stop shop for great book titles in Bangalore!");
         System.out.println("============================");
 
-        Library library = makeNewLibrary();
+        Library library = new Library();
+        library.stockLibrary();
 
          /** menu-making could be a separate method altogether.
           * what follows is a temporary structure for the same.
@@ -58,16 +59,4 @@ public class BibliotecaApp {
 
     }
 
-    public static Library makeNewLibrary() {
-        // creating a library
-        Library library = new Library();
-
-        // adding books to the library
-        Book book  = new Book("Ramayana", "Valmeeki", "3000 BC");
-        library.addBook(book);
-        library.addBook(new Book("Mahabharata", "Ved Vyas", "1000 BC"));
-        library.addBook(new Book("12 Rules for Life", "Dr. Peterson", "2018"));
-
-        return library;
-    }
 }

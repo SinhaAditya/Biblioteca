@@ -5,14 +5,67 @@ import java.util.*;
 public class Library {
 
     List<Book> books;
+    List<Movie> movies;
 
     public Library() {
         books = new ArrayList<Book>();
+        movies = new ArrayList<Movie>();
+    }
+
+    public void openConsole() {
+
+        //displaying welcome message
+        System.out.println("Welcome to Biblioteca. " +
+                "Your one stop shop for great book titles in Bangalore!");
+        System.out.println("============================");
+
+        // creating a menu
+        List<String> mainMenu = new ArrayList<String>();
+
+        // adding menu items
+        mainMenu.add("Enter 1 to view book list");
+        mainMenu.add("Enter 2 to view movies collection");
+        mainMenu.add("Enter 0 to exit");
+
+        // taking user input
+        Scanner choose = new Scanner(System.in);
+
+        int choice = -1;
+
+        while(choice != 0) {
+            // printing main menu
+            System.out.println("MAIN MENU");
+            System.out.println("============================");
+            for(String item: mainMenu) {
+                System.out.println(item);
+            }
+
+            choice = Integer.parseInt(choose.next());
+
+            switch(choice) {
+                case 1:
+                    this.printAllBooks();
+                    break;
+
+                case 2:
+                    this.printAllMovies();
+                    break;
+
+                case 0:
+                    System.out.println("Thank you for using Biblioteca. Exiting now...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please enter again.");
+            }
+        }
     }
 
     public void addBook(Book book) {
         this.books.add(book);
     }
+
+    public void addMovie(Movie movie) { this.movies.add(movie); }
 
     public void printAllBooks() {
 
@@ -21,17 +74,33 @@ public class Library {
         for (int i = 0; i < books.size(); i++) {
             System.out.println(Integer.toString(i+1) + " " + books.get(i).printBook());
         }
-        System.out.println("============================");
 
         this.showBooksMenu();
     }
 
+    public void printAllMovies() {
+        System.out.println("MOVIES");
+        System.out.println("============================");
+        for (int i = 0; i < movies.size(); i++) {
+            System.out.println(Integer.toString(i+1) + " " + movies.get(i).printMovie());
+        }
+    }
+
     public void stockLibrary() {
+
+        // adding books
         Book book  = new Book("Ramayana", "Valmeeki", "3000 BC");
         this.addBook(book);
         this.addBook(new Book("Mahabharata", "Ved Vyas", "1000 BC"));
         this.addBook(new Book("12 Rules for Life", "Jordan Peterson", "2018"));
         this.addBook(new Book("Les Miserables", "Victor Hugo", "1862"));
+
+        // adding movies
+        Movie movie = new Movie("Joker", "2019", "Todd Phillips", "9.3");
+        this.addMovie(movie);
+        this.addMovie(new Movie("Pulp Fiction", "1994", "Quentin Tarantino", "9.6"));
+        this.addMovie(new Movie("Avengers: Infinity War", "2018", "Anthony Russo", "9.5"));
+        this.addMovie(new Movie("Tenki no ko", "2019", "Makoto Shinkai", "9.8"));
     }
 
     public void showBooksMenu() {
@@ -40,7 +109,7 @@ public class Library {
         int choice = 0;
 
         while(choice!= 3) {
-
+            System.out.println("============================");
             System.out.println("Enter 1 to checkout a book");
             System.out.println("Enter 2 to return a book");
             System.out.println("Enter 3 to return to main menu");

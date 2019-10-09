@@ -6,10 +6,21 @@ public class Library {
 
     List<Book> books;
     List<Movie> movies;
+    Scanner login_data = new Scanner(System.in);
+    String username, password;
+
+    static Map<String, String> user_list = new HashMap<String, String>();;
 
     public Library() {
+
         books = new ArrayList<Book>();
         movies = new ArrayList<Movie>();
+        this.stockUserNames();
+
+    }
+
+    public void stockUserNames() {
+        user_list.put("123-4567", "password");
     }
 
     public void openConsole() {
@@ -121,15 +132,39 @@ public class Library {
                 case 1:
                     System.out.println("MOVIE CHECKOUT");
                     System.out.println("============================");
-                    System.out.println("Enter the Serial No for the movie you'd like to take: ");
-                    choice = Integer.parseInt(choose.next());
-                    if(choice > 0 && choice <= movies.size()) {
-                        System.out.println("You've checked out: " + movies.get(choice-1).printMovie());
-                        movies.remove(choice-1);
-                        System.out.println("Thank you! Enjoy the movie");
+
+                    System.out.println("Please enter your username: ");
+
+                    username = login_data.nextLine();
+
+                    if (user_list.containsKey(username)) {
+
+                        System.out.println("Please enter password: ");
+                        password = login_data.nextLine();
+
+                        if (user_list.get(username).equals(password)) {
+
+                            System.out.println("Login successful");
+
+                            System.out.println("Enter the Serial No for the movie you'd like to take: ");
+                            choice = Integer.parseInt(choose.next());
+
+                            if(choice > 0 && choice <= movies.size()) {
+                                System.out.println("You've checked out: " + movies.get(choice-1).printMovie());
+                                movies.remove(choice-1);
+                                System.out.println("Thank you! Enjoy the movie");
+                            } else {
+                                System.out.println("Sorry, that movie is not available");
+                            }
+
+                        } else {
+                            System.out.println("Sorry, the password you entered was incorrect");
+                        }
+
                     } else {
-                        System.out.println("Sorry, that movie is not available");
+                        System.out.println("Sorry, this username is not registered with us");
                     }
+
                     break;
 
                 case 2:
@@ -158,43 +193,90 @@ public class Library {
                 case 1:
                     System.out.println("BOOK CHECKOUT");
                     System.out.println("============================");
-                    System.out.println("Enter the Serial No for the book you'd like to take: ");
-                    choice = Integer.parseInt(choose.next());
-                    if(choice > 0 && choice <= books.size()) {
-                        System.out.println("You've checked out: " + books.get(choice-1).printBook());
-                        books.remove(choice-1);
-                        System.out.println("Thank you! Enjoy the book");
+
+                    System.out.println("Please enter your username: ");
+
+                    username = login_data.nextLine();
+
+                    if (user_list.containsKey(username)) {
+
+                        System.out.println("Please enter password: ");
+                        password = login_data.nextLine();
+
+                        if (user_list.get(username).equals(password)) {
+
+                            System.out.println("Login successful");
+
+
+                            System.out.println("Enter the Serial No for the book you'd like to take: ");
+                            choice = Integer.parseInt(choose.next());
+                            if(choice > 0 && choice <= books.size()) {
+
+                                System.out.println("You've checked out: " + books.get(choice-1).printBook());
+                                books.remove(choice-1);
+                                System.out.println("Thank you! Enjoy the book");
+
+                            } else {
+
+                                System.out.println("Sorry, that book is not available");
+                            }
+
+                        } else {
+                            System.out.println("Sorry, the password you entered was incorrect");
+                        }
+
                     } else {
-                        System.out.println("Sorry, that book is not available");
+                        System.out.println("Sorry, this username is not registered with us");
                     }
+
                     break;
 
                 case 2:
 
                     System.out.println("BOOK RETURN");
                     System.out.println("============================");
+                    System.out.println("Please enter your username: ");
 
-                    Scanner scanner = new Scanner(System.in);
+                    username = login_data.nextLine();
 
-                    System.out.println("Enter book title: ");
-                    String title = scanner.nextLine();
+                    if (user_list.containsKey(username)) {
 
-                    System.out.println("Enter author's name: ");
-                    String author = scanner.nextLine();
+                        System.out.println("Please enter password: ");
+                        password = login_data.nextLine();
 
-                    System.out.println("Enter year of publication: ");
-                    String year = scanner.nextLine();
+                        if (user_list.get(username).equals(password)) {
 
-                    int size_before = books.size();
+                            System.out.println("Login successful");
 
-                    this.addBook(new Book(title, author, year));
+                            Scanner scanner = new Scanner(System.in);
 
-                    int size_after = books.size();
+                            System.out.println("Enter book title: ");
+                            String title = scanner.nextLine();
 
-                    if (size_after > size_before)
-                        System.out.println("Thank you for returning the book");
-                    else
-                        System.out.println("That is not a valid book to return");
+                            System.out.println("Enter author's name: ");
+                            String author = scanner.nextLine();
+
+                            System.out.println("Enter year of publication: ");
+                            String year = scanner.nextLine();
+
+                            int size_before = books.size();
+
+                            this.addBook(new Book(title, author, year));
+
+                            int size_after = books.size();
+
+                            if (size_after > size_before)
+                                System.out.println("Thank you for returning the book");
+                            else
+                                System.out.println("That is not a valid book to return");
+
+                        } else {
+                            System.out.println("Sorry, the password you entered was incorrect");
+                        }
+
+                    } else {
+                        System.out.println("Sorry, this username is not registered with us");
+                    }
 
                     break;
 

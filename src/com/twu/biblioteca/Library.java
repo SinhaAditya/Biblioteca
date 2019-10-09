@@ -84,6 +84,8 @@ public class Library {
         for (int i = 0; i < movies.size(); i++) {
             System.out.println(Integer.toString(i+1) + " " + movies.get(i).printMovie());
         }
+
+        this.showMoviesMenu();
     }
 
     public void stockLibrary() {
@@ -101,6 +103,43 @@ public class Library {
         this.addMovie(new Movie("Pulp Fiction", "1994", "Quentin Tarantino", "9.6"));
         this.addMovie(new Movie("Avengers: Infinity War", "2018", "Anthony Russo", "9.5"));
         this.addMovie(new Movie("Tenki no ko", "2019", "Makoto Shinkai", "9.8"));
+    }
+
+    public void showMoviesMenu() {
+
+        Scanner choose = new Scanner(System.in);
+        int choice = 0;
+
+        while(choice != 2) {
+            System.out.println("============================");
+            System.out.println("Enter 1 to checkout a movie");
+            System.out.println("Enter 2 to return to main menu");
+            choice = Integer.parseInt(choose.next());
+
+            switch(choice) {
+
+                case 1:
+                    System.out.println("MOVIE CHECKOUT");
+                    System.out.println("============================");
+                    System.out.println("Enter the Serial No for the movie you'd like to take: ");
+                    choice = Integer.parseInt(choose.next());
+                    if(choice > 0 && choice <= movies.size()) {
+                        System.out.println("You've checked out: " + movies.get(choice-1).printMovie());
+                        movies.remove(choice-1);
+                        System.out.println("Thank you! Enjoy the movie");
+                    } else {
+                        System.out.println("Sorry, that movie is not available");
+                    }
+                    break;
+
+                case 2:
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Please enter again.");
+
+            }
+        }
     }
 
     public void showBooksMenu() {

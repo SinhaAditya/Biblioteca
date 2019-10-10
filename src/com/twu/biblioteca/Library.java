@@ -7,7 +7,9 @@ public class Library {
     List<Book> books;
     List<Movie> movies;
     Scanner login_data = new Scanner(System.in);
+    List<User> users;
     String username, password;
+    Boolean logged_in;
 
     static Map<String, String> user_list = new HashMap<String, String>();;
 
@@ -15,7 +17,11 @@ public class Library {
 
         books = new ArrayList<Book>();
         movies = new ArrayList<Movie>();
+        users = new ArrayList<User>();
+        users.add(new User("Pasta Boy", "pastaboy@pastafactory.com", "02351611", "123-4567"));
+        users.add(new User("Pho girl", "phogirl@phorefinery.com", "3012987", "765-4321"));
         this.stockUserNames();
+        logged_in = false;
 
     }
 
@@ -145,16 +151,41 @@ public class Library {
                         if (user_list.get(username).equals(password)) {
 
                             System.out.println("Login successful");
+                            logged_in = true;
 
-                            System.out.println("Enter the Serial No for the movie you'd like to take: ");
+                            System.out.println("Enter 1 to checkout movie");
+                            System.out.println("Enter 2 to view user data");
+
                             choice = Integer.parseInt(choose.next());
 
-                            if(choice > 0 && choice <= movies.size()) {
-                                System.out.println("You've checked out: " + movies.get(choice-1).printMovie());
-                                movies.remove(choice-1);
-                                System.out.println("Thank you! Enjoy the movie");
-                            } else {
-                                System.out.println("Sorry, that movie is not available");
+                            switch(choice) {
+                                case 1:
+                                    System.out.println("Enter the Serial No for the movie you'd like to take: ");
+                                    choice = Integer.parseInt(choose.next());
+
+                                    if(choice > 0 && choice <= movies.size()) {
+                                        System.out.println("You've checked out: " + movies.get(choice-1).printMovie());
+                                        movies.remove(choice-1);
+                                        System.out.println("Thank you! Enjoy the movie");
+                                    } else {
+                                        System.out.println("Sorry, that movie is not available");
+                                    }
+                                    break;
+
+                                case 2:
+                                    if(logged_in) {
+                                        for (User user: users) {
+                                            if(user.getUsername().equals(username)) {
+                                                System.out.println("Name: " + user.getName());
+                                                System.out.println("Email: " + user.getEmail());
+                                                System.out.println("Phone_no: " + user.getPhone_No());
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    System.out.println("Sorry, that's an invalid choice");
                             }
 
                         } else {
@@ -206,19 +237,44 @@ public class Library {
                         if (user_list.get(username).equals(password)) {
 
                             System.out.println("Login successful");
+                            logged_in = true;
 
+                            System.out.println("Enter 1 to checkout book");
+                            System.out.println("Enter 2 to view user data");
 
-                            System.out.println("Enter the Serial No for the book you'd like to take: ");
                             choice = Integer.parseInt(choose.next());
-                            if(choice > 0 && choice <= books.size()) {
 
-                                System.out.println("You've checked out: " + books.get(choice-1).printBook());
-                                books.remove(choice-1);
-                                System.out.println("Thank you! Enjoy the book");
+                            switch(choice) {
 
-                            } else {
+                                case 1:
+                                    System.out.println("Enter the Serial No for the book you'd like to take: ");
+                                    choice = Integer.parseInt(choose.next());
+                                    if(choice > 0 && choice <= books.size()) {
 
-                                System.out.println("Sorry, that book is not available");
+                                        System.out.println("You've checked out: " + books.get(choice-1).printBook());
+                                        books.remove(choice-1);
+                                        System.out.println("Thank you! Enjoy the book");
+
+                                    } else {
+
+                                        System.out.println("Sorry, that book is not available");
+                                    }
+
+                                case 2:
+                                    if(logged_in) {
+                                        for (User user: users) {
+                                            if(user.getUsername().equals(username)) {
+                                                System.out.println("Name: " + user.getName());
+                                                System.out.println("Email: " + user.getEmail());
+                                                System.out.println("Phone_no: " + user.getPhone_No());
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    System.out.println("Sorry, that's an invalid choice");
+
                             }
 
                         } else {
@@ -247,28 +303,55 @@ public class Library {
                         if (user_list.get(username).equals(password)) {
 
                             System.out.println("Login successful");
+                            logged_in = true;
 
-                            Scanner scanner = new Scanner(System.in);
+                            System.out.println("Enter 1 to return book");
+                            System.out.println("Enter 2 to view user data");
 
-                            System.out.println("Enter book title: ");
-                            String title = scanner.nextLine();
+                            choice = Integer.parseInt(choose.next());
 
-                            System.out.println("Enter author's name: ");
-                            String author = scanner.nextLine();
+                            switch(choice) {
 
-                            System.out.println("Enter year of publication: ");
-                            String year = scanner.nextLine();
+                                case 1:
 
-                            int size_before = books.size();
+                                    Scanner scanner = new Scanner(System.in);
 
-                            this.addBook(new Book(title, author, year));
+                                    System.out.println("Enter book title: ");
+                                    String title = scanner.nextLine();
 
-                            int size_after = books.size();
+                                    System.out.println("Enter author's name: ");
+                                    String author = scanner.nextLine();
 
-                            if (size_after > size_before)
-                                System.out.println("Thank you for returning the book");
-                            else
-                                System.out.println("That is not a valid book to return");
+                                    System.out.println("Enter year of publication: ");
+                                    String year = scanner.nextLine();
+
+                                    int size_before = books.size();
+
+                                    this.addBook(new Book(title, author, year));
+
+                                    int size_after = books.size();
+
+                                    if (size_after > size_before)
+                                        System.out.println("Thank you for returning the book");
+                                    else
+                                        System.out.println("That is not a valid book to return");
+                                    break;
+
+                                case 2:
+                                    if(logged_in) {
+                                        for (User user: users) {
+                                            if(user.getUsername().equals(username)) {
+                                                System.out.println("Name: " + user.getName());
+                                                System.out.println("Email: " + user.getEmail());
+                                                System.out.println("Phone_no: " + user.getPhone_No());
+                                            }
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    System.out.println("Sorry, that's an invalid choice");
+                            }
 
                         } else {
                             System.out.println("Sorry, the password you entered was incorrect");

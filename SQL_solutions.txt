@@ -1,0 +1,97 @@
+Q.1.
+
+OUTPUT
+1|Anand Beck
+
+QUERY
+select id, name
+	from member
+		where id == (
+			select member_id
+				from checkout_item
+					where book_id == (
+						select id
+							from book
+								where title == "The Hobbit"));
+
+Q.2.
+
+OUTPUT
+37
+
+QUERY
+select (select count(*) from member)
+ - (select count(distinct member_id) from checkout_item);
+
+
+Q.3.
+
+OUTPUT
+2|Fellowship of the Ring
+6|1984
+7|Tom Sawyer
+8|Catcher in the Rye
+9|To Kill a Mockingbird
+10|Domain Driven Design
+6|Thin Red Line
+7|Crouching Tiger, Hidden Dragon
+8|Lawrence of Arabia
+9|Office Space
+
+
+QUERIES
+select id, title
+	from book
+		where id not in (
+			select book_id
+				from checkout_item
+					where book_id is not null);
+
+select id, title
+	from movie
+		where id not in (
+			select movie_id
+				from checkout_item
+					where movie_id is not null);
+
+
+Q.4.
+
+OUTPUT
+43|Aditya Sinha
+
+QUERIES
+insert into book (id, title)
+	values (11, "The Pragmatic Programmer");
+
+insert into member(id, name)
+	values (43, "Aditya Sinha");
+
+insert into checkout_item (member_id, book_id, movie_id)
+	values (43, 11, null);
+
+select id, name
+	from member
+		where id == (
+			select member_id
+				from checkout_item
+					where book_id == (
+						select id
+							from book
+								where title == "The Pragmatic Programmer"));
+
+
+
+Q.5.
+
+OUTPUT
+1|Anand Beck
+6|Frank Smith
+
+
+QUERIES
+select member.id, member.name
+   ...> from member, checkout_item
+   ...> where member.id == checkout_item.member_id
+   ...> group by member.id
+   ...> having count(*) > 1;

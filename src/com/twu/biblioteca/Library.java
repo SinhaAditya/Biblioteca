@@ -10,8 +10,7 @@ public class Library {
     List<User> users;
     String username, password;
     Boolean logged_in;
-
-    static Map<String, String> user_list = new HashMap<String, String>();;
+    Map<String, String> user_list = new HashMap<String, String>();;
 
     public Library() {
 

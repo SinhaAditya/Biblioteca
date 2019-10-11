@@ -4,6 +4,7 @@
     <list default="true" id="e5e206f0-66d1-4286-bace-f7d5b77b9b34" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BookTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +84,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExampleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BookTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
         <pattern>
@@ -92,7 +93,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
-      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.BookTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -126,12 +127,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.BibliotecaApp" />
-      <item itemvalue="JUnit.ExampleTest" />
+      <item itemvalue="JUnit.BookTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.BibliotecaApp" />
-        <item itemvalue="JUnit.ExampleTest" />
+        <item itemvalue="JUnit.BookTest" />
       </list>
     </recent_temporary>
   </component>
